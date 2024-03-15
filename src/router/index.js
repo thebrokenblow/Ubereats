@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import RestaurantList from "../pages/RestaurantList.vue";
 import NotFound from "../pages/NotFound.vue";
+import MenuList from "../pages/MenuList.vue";
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: "/:pathMatch(.*)*",
     name: "notFound",
     component: NotFound,
+  },
+  {
+    path: "/restaurant/:id",
+    name: "menu",
+    component: MenuList,
   },
 ];
 
