@@ -15,8 +15,8 @@
   --scroller-size-small: 64px;
   --max-width: 1124px;
 
-  font-family: Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-family: Roboto, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans",
+    -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: var(--font-size);
   color: var(--color-dark);
@@ -47,7 +47,7 @@ a {
   background-color: var(--color-light);
   padding: 10px 20px;
   border-radius: var(--border-radius);
-  transition: background-color 0.3s;  
+  transition: background-color 0.3s;
 }
 
 .button:hover {
@@ -67,7 +67,7 @@ a {
   z-index: 2;
   width: var(--scroller-size);
   height: var(--scroller-size);
-  background: var(--color-main) url(../../../public/img/footer/btn-up.svg) no-repeat;
+  background: var(--color-main) url(../assets/arrow-up.svg) no-repeat;
   background-position: center center;
   border-radius: 5px;
   display: block;
