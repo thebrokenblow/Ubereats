@@ -1,8 +1,7 @@
-<script setup></script>
-
 <template>
   <div class="search container">
     <input
+      v-model="nameRestaurant"
       class="input search-input"
       type="search"
       name="search-input-main"
@@ -14,7 +13,7 @@
     <h2 class="stores-header">Рестораны в Москве</h2>
     <div class="stores-cards">
       <restaurant-card
-        v-for="restaurant in restaurants"
+        v-for="restaurant in getEnterRestaurants"
         :key="restaurant.id"
         :restaurant="restaurant"
       />
@@ -28,8 +27,8 @@
 }
 
 .stores-header {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 25px;
+  margin-bottom: 35px;
 }
 
 .stores-cards {
@@ -59,6 +58,18 @@
 .stores-card:hover {
   background-color: var(--color-lightergray);
 }
+
+.search {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--color-placeholder);
+}
 </style>
 
 <script>
@@ -71,7 +82,17 @@ export default {
   data() {
     return {
       restaurants: sourseData.restaurants,
+      nameRestaurant: "",
     };
+  },
+  computed: {
+    getEnterRestaurants() {
+      return this.restaurants.filter((restaurant) =>
+        restaurant.name
+          .toLocaleLowerCase()
+          .includes(this.nameRestaurant.toLocaleLowerCase())
+      );
+    },
   },
 };
 </script>

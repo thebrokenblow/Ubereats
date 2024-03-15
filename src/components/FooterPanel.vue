@@ -98,10 +98,6 @@
           <a href="#">Пользовательское соглашение</a>
         </div>
       </div>
-
-      <a class="scroller" id="scroller">
-        <div class="scroller-area"></div>
-      </a>
     </div>
   </div>
 </template>

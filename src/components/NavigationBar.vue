@@ -1,24 +1,25 @@
 <script setup></script>
 
 <template>
-  <div style="margin-top: -20px;" class="nav">
+  <div style="margin-top: -20px" class="nav">
     <div class="nav-panel container">
       <div class="nav-logo">
-        <a href="index.html">
-          <img src="../../public/img/header/logo.svg" alt="UberEats" />
-        </a>
+        <router-link to="/">
+          <img src="../../public/img/header/logo.svg" alt="UberEats"
+        /></router-link>
       </div>
 
       <div class="nav-cabinet">
-        <a
+        <router-link
+          to="/"
+          class="nav-element button nav-button"
           style="cursor: pointer"
           type="button"
-          class="nav-element button nav-button"
-          >Войти</a
+          >Войти</router-link
         >
-        <a href="#" class="icon-link nav-element">
+        <router-link to="/" class="icon-link nav-element">
           <img src="../../public/img/header/basket.svg" alt="Корзина" />
-        </a>
+        </router-link>
       </div>
     </div>
   </div>
