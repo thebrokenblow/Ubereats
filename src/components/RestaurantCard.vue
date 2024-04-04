@@ -1,22 +1,30 @@
 <template>
-  <div class="stores-card">
-    <div class="stores-card-pic">
-      <img
-        class="transition-fix"
-        src="../../public/img/1.jpg"
-        :alt="restaurant.name"
-      />
+  <router-link :to="{ name: 'menu', params: { id: restaurant.id } }">
+    <div class="stores-card">
+      <div class="stores-card-pic">
+        <img
+          class="transition-fix"
+          src="../../public/img/1.jpg"
+          :alt="restaurant.name"
+        />
+      </div>
+      <div class="store-name">{{ restaurant.name }}</div>
+      <div class="store-type">
+        {{ "₽".repeat(restaurant.typeCost) }}
+        <span> • </span>
+        <span
+          v-for="typeKitchen in restaurant.typesKitchens"
+          :key="typeKitchen.id"
+        >
+          {{ typeKitchen.title }}</span
+        >
+      </div>
+      <div class="store-time">
+        {{ restaurant.lowerLimitCookingTime }} -
+        {{ restaurant.upperLimitCookingTime }} мин
+      </div>
     </div>
-    <div class="store-name">{{ restaurant.name }}</div>
-    <div class="store-type">
-      {{ "₽".repeat(restaurant.priceCategory) }}
-      <span>• </span>
-      <span v-for="category in restaurant.categories" :key="category">
-        {{ category.name }}</span
-      >
-    </div>
-    <div class="store-time">{{ restaurant.cookingTime }} мин</div>
-  </div>
+  </router-link>
 </template>
 
 <script>

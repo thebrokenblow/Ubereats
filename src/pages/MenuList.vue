@@ -1,11 +1,20 @@
 <template>
   <div class="hero">
     <div class="container">
-      <div class="hero-info">
-        <h1>Трактир «Пушкин»</h1>
+      <div v-if="restaurant" class="hero-info">
+        <h1>{{ restaurant.name }}</h1>
         <div class="hero-info-footer">
-          <div class="store-type">₽₽₽ • Европейская</div>
-          <div class="hero-info-footer-time">40 - 50 мин</div>
+          <div class="store-type">
+            {{ "₽".repeat(restaurant.priceCategory) }}
+            <span> • </span>
+            <span v-for="category in restaurant.categories" :key="category">
+              {{ category.name }}</span
+            >
+          </div>
+          <div class="hero-info-footer-time">
+            {{ restaurant.lowerLimitCookingTime }} -
+            {{ restaurant.upperLimitCookingTime }} мин
+          </div>
         </div>
       </div>
     </div>
@@ -363,7 +372,26 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      restaurant: null,
+    };
+  },
+
+  methods: {
+    async initData() {
+      const response = await fetch(
+        `https://localhost:7274/restaurants/${this.$route.params.id}`
+      );
+      this.restaurant = await response.json();
+    },
+  },
+
+  async created() {
+    this.initData();
+  },
+};
 </script>
 
 <style scoped>

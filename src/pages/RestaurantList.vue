@@ -9,7 +9,7 @@
       placeholder="Поиск по ресторанам и кухням"
     />
   </div>
-  <div class="container container__restaurants">
+  <div v-if="restaurants" class="container container__restaurants">
     <h2 class="stores-header">Рестораны в Москве</h2>
     <div class="stores-cards">
       <restaurant-card
@@ -20,6 +20,44 @@
     </div>
   </div>
 </template>
+
+<script>
+import RestaurantCard from "../components/RestaurantCard.vue";
+export default {
+  components: {
+    RestaurantCard,
+  },
+  data() {
+    return {
+      restaurants: [],
+      nameRestaurant: "",
+    };
+  },
+
+  methods: {
+    async initData() {
+      const response = await fetch(`https://localhost:7274/restaurants`);
+      this.restaurants = await response.json();
+    },
+  },
+
+  computed: {
+    getEnterRestaurants() {
+      if (this.restaurants) {
+        return this.restaurants.filter((restaurant) =>
+          restaurant.title
+            .toLocaleLowerCase()
+            .includes(this.nameRestaurant.toLocaleLowerCase())
+        );
+      }
+    },
+  },
+
+  async created() {
+    this.initData();
+  },
+};
+</script>
 
 <style scoped>
 .container__restaurants {
@@ -71,28 +109,3 @@
   border-bottom: 1px solid var(--color-placeholder);
 }
 </style>
-
-<script>
-import sourseData from "../assets/data.json";
-import RestaurantCard from "../components/RestaurantCard.vue";
-export default {
-  components: {
-    RestaurantCard,
-  },
-  data() {
-    return {
-      restaurants: sourseData.restaurants,
-      nameRestaurant: "",
-    };
-  },
-  computed: {
-    getEnterRestaurants() {
-      return this.restaurants.filter((restaurant) =>
-        restaurant.name
-          .toLocaleLowerCase()
-          .includes(this.nameRestaurant.toLocaleLowerCase())
-      );
-    },
-  },
-};
-</script>
